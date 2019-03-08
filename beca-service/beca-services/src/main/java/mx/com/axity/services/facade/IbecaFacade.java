@@ -11,4 +11,5 @@ public interface IbecaFacade {
     void createLogin(LoginTO loginTO);
     void updateLogin(LoginTO loginTO);
     void deleteLoginUd(Long id);
+    boolean login(String user_name, String password);
 }

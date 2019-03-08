@@ -11,4 +11,5 @@ public interface IbecaService {
     void saveLogin(LoginDO loginDO);
     void updateLogin(LoginDO loginDO);
     void deleteLogin(Long id);
+    boolean login(String user_name, String password);
 }

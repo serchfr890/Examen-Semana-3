@@ -47,6 +47,17 @@ public class HelloController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/loginp", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity loginp(
+            @RequestParam(value = "user_name") String user_name,
+            @RequestParam(value = "password") String password){
+        if(this.IbecaFacade.login(user_name, password)){
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.PUT, produces = "application/json")
     public ResponseEntity updateLogin(@RequestBody LoginTO loginTO) {
         LOG.info("Update Login");

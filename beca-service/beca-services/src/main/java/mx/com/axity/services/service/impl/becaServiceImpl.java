@@ -13,6 +13,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.lang.reflect.Type;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -48,5 +49,21 @@ public class becaServiceImpl implements IbecaService {
     @Override
     public void deleteLogin(Long id) {
         this.loginDAO.deleteById(id);
+    }
+
+    @Override
+    public boolean login(String user_name, String password) {
+        LoginDO loginDO;
+        boolean flag = false;
+        List<LoginDO> loginDOList = (List<LoginDO>) this.loginDAO.findAll();
+        Iterator iterator = loginDOList.iterator();
+        while(iterator.hasNext()){
+            loginDO = (LoginDO) iterator.next();
+            if(loginDO.getUser().equals(user_name) && loginDO.getPassword().equals(password)){
+                flag = true;
+                break;
+            }else{ flag = false; }
+        }
+        return flag;
     }
 }

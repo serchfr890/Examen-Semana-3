@@ -52,4 +52,9 @@ public class becaFacade implements IbecaFacade {
     public void deleteLoginUd(Long id) {
         this.becaService.deleteLogin(id);
     }
+
+    @Override
+    public boolean login(String user_name, String password) {
+        return this.becaService.login(user_name, password);
+    }
 }
